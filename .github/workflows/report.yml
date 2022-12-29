@@ -67,7 +67,7 @@ jobs:
                 username: ${{secrets.MAIL_USERNAME}}
                 password: ${{secrets.MAIL_PASSWORD}}
                 subject: Report Message
-                to: ${{secrets.MAIL_USERNAME}}
-                from: ${{secrets.MAIL_USERNAME}}
+                to: pazjefferson11216@gmail.com
+                from: jpaz@hellobuild.co
                 convert_markdown: true
                 html_body: file://README.md
