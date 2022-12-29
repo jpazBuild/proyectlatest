@@ -1,6 +1,6 @@
 describe('empty spec', () => {
   it('passes', () => {
     cy.visit('https://example.cypress.io')
-    cy.get("#logo")
+    cy.log("es un ejemplo 1")
   })
 })
