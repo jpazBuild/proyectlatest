@@ -3,6 +3,8 @@ name: allure-report
     push:
         branches:
             - dev
+    schedule:
+        - cron: "30 * * * *" 
 jobs:
     generate-report:
         runs-on: ubuntu-latest
