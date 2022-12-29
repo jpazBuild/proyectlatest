@@ -1,5 +1,6 @@
 Feature: searching something in google
 
+  @feature("searching")
   Scenario Outline: Navigate google
     When I navegate into google
     When I search "<word>"
