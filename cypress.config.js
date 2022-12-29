@@ -9,6 +9,7 @@ module.exports = defineConfig({
     specPattern: "**/**/*.feature",
     chromeWebSecurity: true,
     video: true,
+    videosFolder:"cypress/videos",
     screenshotsFolder: "cypress/screenshots",
     viewportHeight: 900,
     viewportWidth: 1440,
