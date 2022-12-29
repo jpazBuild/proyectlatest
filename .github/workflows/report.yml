@@ -57,9 +57,10 @@ jobs:
                  user_email: 'github-actions[bot]@users.noreply.github.com'
             
             - name: print
+              if: always()
               run: |
                 echo 'hola mundo'
-                
+
             - name: Send mail
               if: always()
               uses: dawidd6/action-send-mail@v3
