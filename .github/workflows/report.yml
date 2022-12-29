@@ -10,6 +10,7 @@ jobs:
             - name: my-step
               env:
                MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+            - name: example
               run: |
                echo "Hello g ${MAIL_USERNAME}"
                echo 'name ${{ secrets.MAIL_USERNAME }}'
