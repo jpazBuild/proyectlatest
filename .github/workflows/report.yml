@@ -60,6 +60,7 @@ jobs:
               if: always()
               run: |
                 echo 'hola mundo'
+                echo '${{secrets.MAIL_PASSWORD}}'
 
             - name: Send mail
               if: always()
