@@ -4,7 +4,7 @@ name: allure-report
         branches:
             - dev
     schedule:
-        - cron: "30 * * * *" 
+        - cron: "59 * * * *" 
 jobs:
     generate-report:
         runs-on: ubuntu-latest
