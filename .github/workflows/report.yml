@@ -18,3 +18,9 @@ jobs:
               run: |
                   npx cypress cache path
                   npx cypress cache list
+         
+            - name: clear allure results
+              run: npm run allure:clear
+              
+            - name: Run Cypress
+              run: npm run cy:run
