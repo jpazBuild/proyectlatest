@@ -22,6 +22,10 @@ When('I search {string}',(word)=>{
   cy.get('[name="q"]').type(`${word}{enter}`)
 })
 
+Then('validate the word {string} appears in the google search',(wordexpected)=>{
+  cy.contains(wordexpected)
+})
+
 afterEach(()=>{
   cy.screenshot()
 })
