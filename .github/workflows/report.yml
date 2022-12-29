@@ -64,7 +64,7 @@ jobs:
                 server_port: 465
                 secure: true
                 username: jpaz@hellobuild.co
-                password: Hellobuild@2612
+                password: ${{secrets.MAIL_PASSWORD}}
                 subject: Report Message
                 to: pazjefferson11216@gmail.com
                 from: jpaz@hellobuild.co
