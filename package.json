@@ -12,7 +12,8 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cypress": "^12.2.0"
+  "devDependencies": {
+       "@shelex/cypress-allure-plugin": "latest",
+       "cypress": "^12.2.0"
   }
 }
