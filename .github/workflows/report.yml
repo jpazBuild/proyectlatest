@@ -7,14 +7,6 @@ jobs:
     generate-report:
         runs-on: ubuntu-latest
         steps:
-            - name: my-step
-              env:
-               MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-            - name: example
-              run: |
-               echo "Hello g ${MAIL_USERNAME}"
-               echo 'name ${{ secrets.MAIL_USERNAME }}'
-            
             - name: config node 
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
@@ -72,8 +64,8 @@ jobs:
                 server_address: smtp.gmail.com
                 server_port: 465
                 secure: true
-                username: ${{secrets.MAIL_USERNAME}}
-                password: ${{secrets.MAIL_PASSWORD}}
+                username: jpaz@hellobuild.co
+                password: Hellobuild@2612
                 subject: Report Message
                 to: pazjefferson11216@gmail.com
                 from: jpaz@hellobuild.co
