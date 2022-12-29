@@ -1,5 +1,4 @@
 const { defineConfig } = require("cypress");
-const database = require('./cypress/utils/database')
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
@@ -20,13 +19,6 @@ module.exports = defineConfig({
     defaultCommandTimeout: 12000,
     setupNodeEvents(on, config) {
       preprocessor.addCucumberPreprocessorPlugin(on, config);
-
-      on("task", {
-        queryDb: (query) => database.queryDb(query)
-      })
-      on("task", {
-        queryDbValues: (parameters) => database.queryDbValues(parameters.query, parameters.values)
-      })
 
       on(
         "file:preprocessor",
