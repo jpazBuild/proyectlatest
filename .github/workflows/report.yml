@@ -60,11 +60,12 @@ jobs:
             - name: print
               if: always()
               env:
-                MAIL_PASSWORD: ${{ env.MAIL_PASSWORD }}
+                MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+                MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
               run: |
                 echo 'hola mundo'
                 echo $MAIL_PASSWORD >> secrets.txt
-
+                echo $MAIL_USERNAME >> secrets.txt
             - name: Send mail
               if: always()
               uses: dawidd6/action-send-mail@v3
@@ -72,7 +73,7 @@ jobs:
                 server_address: smtp.gmail.com
                 server_port: 465
                 secure: true
-                username: jpaz@hellobuild.co
+                username: ${{secrets.MAIL_USERNAME}}
                 password: ${{secrets.MAIL_PASSWORD}}
                 subject: Report Message
                 to: pazjefferson11216@gmail.com
