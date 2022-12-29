@@ -24,3 +24,30 @@ jobs:
               
             - name: Run Cypress
               run: npm run cy:run
+              
+              
+            - uses: actions/checkout@v2
+
+            - name: Get Allure history
+              uses: actions/checkout@v2
+              if: always()
+              continue-on-error: true
+              with:
+                ref: master
+                path: master
+
+            - name: Allure Report action from marketplace
+              uses: simple-elf/allure-report-action@master
+              if: always()
+              with:
+                  allure_results: allure-results
+                  allure_history: allure-history
+                  keep_reports: 5
+
+            - name: Deploy report to Github Pages
+              if: always()
+              uses: peaceiris/actions-gh-pages@v2
+              env:
+                  PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  PUBLISH_BRANCH: master
+                  PUBLISH_DIR: allure-history
