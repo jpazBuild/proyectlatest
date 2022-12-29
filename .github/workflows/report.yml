@@ -7,7 +7,6 @@ jobs:
     generate-report:
         runs-on: ubuntu-latest
         steps:
-            - name: config node 
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
@@ -15,6 +14,7 @@ jobs:
                 cache: 'npm'
             - run: |
                  npm i cypress
+                 echo ${{secrets.MAIL_USERNAME}}
             
             - name: Check Cypress cache
               run: |
