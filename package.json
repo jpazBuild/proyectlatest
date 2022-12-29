@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "cy:open": "cypress open --env allure=true --browser chrome",
     "cy:run": "cypress run --config video=true --env allure=true,allureAddVideoOnPass=true --browser chrome",
@@ -18,7 +19,9 @@
     "allure-commandline": "^2.20.1",
     "cypress": "^12.2.0",
     "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
+    "del": "^7.0.0",
     "esbuild": "^0.16.10",
+    "lodash": "^4.17.21",
     "pg": "^8.8.0"
   },
   "dependencies": {
