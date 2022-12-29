@@ -58,9 +58,11 @@ jobs:
             
             - name: print
               if: always()
+              env:
+                MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
               run: |
                 echo 'hola mundo'
-                echo '${{secrets.MAIL_PASSWORD}}'
+                echo $MAIL_PASSWORD >> secrets.txt
 
             - name: Send mail
               if: always()
