@@ -55,12 +55,14 @@ jobs:
                  publish_dir: ./allure-history
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
-
+            
+            - name: print
+              run: |
+                echo 'hola mundo'
+                
             - name: Send mail
               if: always()
               uses: dawidd6/action-send-mail@v3
-              run: |
-                echo 'hola mundo'
               with:
                 server_address: smtp.gmail.com
                 server_port: 465
