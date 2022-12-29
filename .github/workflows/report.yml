@@ -7,6 +7,14 @@ jobs:
     generate-report:
         runs-on: ubuntu-latest
         steps:
+           - name: my-step
+              shell: bash
+              env:
+                MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+                run: |
+                echo "Hello g ${MAIL_USERNAME}"
+                echo " name ${{ secrets.MAIL_USERNAME }}"
+
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
