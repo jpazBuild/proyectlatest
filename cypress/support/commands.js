@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('Input',(locator,dataType)=>{
+    cy.get(locator).should('have.length', 1).clear().type(dataType,{ force: true });
+})
+
+Cypress.Commands.add('Button',(locator)=>{
+    cy.get(locator).should('have.length', 1).click({ force: true });
+})
+
+Cypress.Commands.add('TextValidation',(locator,message)=>{
+    cy.get(locator, { timeout: 10000 }).should('have.length', 1).should('have.text', message)
+})
+
+Cypress.Commands.add('forceClick', {prevSubject: 'element'}, (subject, options) => {
+    cy.wrap(subject).click({force: true})
+  });

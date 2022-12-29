@@ -12,11 +12,27 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+    "@shelex/cypress-allure-plugin": "^2.34.0",
+    "allure-commandline": "^2.20.1",
+    "cypress": "^12.2.0",
+    "esbuild": "^0.16.10",
+    "pg": "^8.8.0"
+  },
   "dependencies": {
     "allure-commandline": "^2.20.1",
-    "cypress": "^12.2.0"
+    "@badeball/cypress-cucumber-preprocessor": "^15.0.0",
+    "@deepakvishwakarma/cucumber-json-formatter": "^0.0.3",
+    "multiple-cucumber-html-reporter": "^3.0.1"
   },
-  "devDependencies": {
-    "@shelex/cypress-allure-plugin": "^2.34.0"
+  "standard": {
+    "globals": [
+      "Cypress",
+      "cy",
+      "describe",
+      "it",
+      "expect"
+    ]
   }
 }
