@@ -24,7 +24,6 @@ jobs:
             - run: |
                  npm i cypress
                  echo ${{secrets.MAIL_USERNAME}}
-
             
             - name: Check Cypress cache
               run: |
