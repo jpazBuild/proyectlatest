@@ -3,7 +3,7 @@ on:
   push:
     branches: [dev]
     schedule:
-        - cron: "10 * * * *" 
+      - cron: "*/6 * * * *"
 jobs:
     generate-report:
         runs-on: ubuntu-latest
