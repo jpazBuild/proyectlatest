@@ -54,8 +54,8 @@ jobs:
               uses: peaceiris/actions-gh-pages@v3
               with:
                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                 PUBLISH_BRANCH: gh-pages
-                 publish_dir: ./allure-history
+                 PUBLISH_BRANCH: gh-pages-allure
+                 publish_dir: ./
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
             
