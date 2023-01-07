@@ -38,7 +38,6 @@ jobs:
               continue-on-error: true
               with:
                 ref: example2
-                path: example2/
 
             - name: Allure Report action from marketplace
               uses: simple-elf/allure-report-action@master
