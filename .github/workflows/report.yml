@@ -29,16 +29,7 @@ jobs:
             - name: Run Cypress
               run: npm run cy:run
               
-            
-            - name: Allure Report action from marketplace
-              uses: simple-elf/allure-report-action@master
-              if: always()
-              with:
-                  gh_pages: gh-pages-allure
-                  allure_results: allure-results
-                  allure_history: allure-history
-                  keep_reports: 5
-
+              
             - uses: actions/checkout@v2
 
             - name: Get Allure history
@@ -48,6 +39,15 @@ jobs:
               with:
                 ref: gh-pages-allure
                 path: gh-pages-allure
+
+            - name: Allure Report action from marketplace
+              uses: simple-elf/allure-report-action@master
+              if: always()
+              with:
+                  gh_pages: gh-pages-allure
+                  allure_results: allure-results
+                  allure_history: allure-history
+                  keep_reports: 5
                   
             - name: Deploy report page
               if: always()
