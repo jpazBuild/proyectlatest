@@ -9,4 +9,4 @@ Feature: searching something in google
     Examples: 
       | word          | wordvalidate  |
       | qa automation | qa automation |
-      | qa automation | scrum         |
+      | qa automation | scrum2         |
