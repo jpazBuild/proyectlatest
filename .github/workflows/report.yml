@@ -37,14 +37,14 @@ jobs:
               if: always()
               continue-on-error: true
               with:
-                ref: gh-pages-allure
-                path: gh-pages-allure
+                ref: dev
+                path: example
 
             - name: Allure Report action from marketplace
               uses: simple-elf/allure-report-action@master
               if: always()
               with:
-                  gh_pages: gh-pages-allure
+                  gh_pages: example
                   allure_results: allure-results
                   allure_history: allure-history
                   keep_reports: 5
@@ -54,7 +54,7 @@ jobs:
               uses: peaceiris/actions-gh-pages@v3
               with:
                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                 PUBLISH_BRANCH: gh-pages-allure
+                 PUBLISH_BRANCH: example
                  publish_dir: ./
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
