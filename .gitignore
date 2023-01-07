@@ -7,3 +7,4 @@ yarn.lock
 cypress/downloads/**
 .vscode/settings.json
 allure-results/*
+allure-report
