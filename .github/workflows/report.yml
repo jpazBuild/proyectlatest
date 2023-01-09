@@ -66,6 +66,15 @@ jobs:
                 echo 'hola mundo'
                 echo $MAIL_PASSWORD >> secrets.txt
                 echo $MAIL_USERNAME >> secrets.txt
+
+
+            - name: Checkout dev branch
+              uses: actions/checkout@v2
+              if: always()
+              continue-on-error: true
+              with:
+                ref: dev
+
             - name: Send mail
               if: always()
               uses: dawidd6/action-send-mail@v3
