@@ -33,7 +33,7 @@ jobs:
 
             - name: checkout branch report
               uses: actions/checkout@v2
-              if: ${{ always() }}
+              if: always()
               continue-on-error: true
               with:
                 ref: example2
@@ -62,16 +62,22 @@ jobs:
     sendmail:
         needs: generate-report
         name: send mail
+
         if: ${{ always() }}
         runs-on: ubuntu-latest
+        environment: secrets
         steps:
-        - name: check the path
+        - name: checkout branch report
+          uses: actions/checkout@v2
           if: always()
+          continue-on-error: true
+          with:
+            ref: dev
+              
+        - name: log 
           run: |
-            git checkout dev
             git branch
             pwd
-              
 
         - name: Send mail
           if: always()
@@ -87,4 +93,3 @@ jobs:
             from: ${{secrets.MAIL_USERNAME}}
             convert_markdown: true
             html_body: file://README.md
-
