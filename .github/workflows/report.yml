@@ -57,10 +57,26 @@ jobs:
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
             
+    deploy:
+      needs: generate-report
+      name: deploy
+      if: ${{ always() }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout branch report
+          uses: actions/checkout@v2
+          if: always()
+          continue-on-error: true
+          with:
+            ref: example2
 
+        - name: Deploy 🚀
+          uses: JamesIves/github-pages-deploy-action@v4
+          with:
+            folder: ./
 
     sendmail:
-        needs: generate-report
+        needs: deploy
         name: send mail
 
         if: ${{ always() }}
