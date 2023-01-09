@@ -53,7 +53,7 @@ jobs:
               with:
                  github_token: ${{ secrets.GITHUB_TOKEN }}
                  PUBLISH_BRANCH: example2
-                 publish_dir: ./
+                 publish_dir: ./allure-history
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
             
