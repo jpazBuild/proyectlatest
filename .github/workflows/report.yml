@@ -70,10 +70,12 @@ jobs:
           with:
             ref: example2
 
-        - name: Deploy 🚀
-          uses: JamesIves/github-pages-deploy-action@v4
+
+        - uses: actions/checkout@v2
+        - uses: EdricChan03/action-build-deploy-ghpages@v3.1.0
           with:
-            folder: ./
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            
 
     sendmail:
         needs: deploy
