@@ -30,30 +30,30 @@ jobs:
               
               
             - uses: actions/checkout@v2
-
             - name: Get Allure history
               uses: actions/checkout@v2
               if: always()
               continue-on-error: true
               with:
-                ref: gh-pages
-                path: gh-pages
+                  ref: allure
+                  path: allure
 
-            - name: Allure Report action from marketplace
+            - name: Generate Allure Report
               uses: simple-elf/allure-report-action@master
               if: always()
               with:
                   allure_results: allure-results
                   allure_history: allure-history
-                  keep_reports: 5
+                  gh_pages: allure
+
                   
             - name: Deploy report page
               if: always()
               uses: peaceiris/actions-gh-pages@v3
               with:
                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                 PUBLISH_BRANCH: gh-pages
-                 publish_dir: ./allure-history
+                 PUBLISH_BRANCH: allure
+                 publish_dir: allure-history
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
             
