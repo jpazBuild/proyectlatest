@@ -57,57 +57,32 @@ jobs:
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
             
-            - name: print
-              if: always()
-              env:
-                MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-                MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-              run: |
-                echo 'hola mundo'
-                echo $MAIL_PASSWORD >> secrets.txt
-                echo $MAIL_USERNAME >> secrets.txt
 
 
-            
-            - name: check the path
-              if: always()
-              run: |
-                git branch
-                pwd
-              
-
-            - name: Send mail
-              if: always()
-              uses: dawidd6/action-send-mail@v3
-              with:
-                server_address: smtp.gmail.com
-                server_port: 465
-                secure: true
-                username: ${{secrets.MAIL_USERNAME}}
-                password: ${{secrets.MAIL_PASSWORD}}
-                subject: Report Message
-                to: ${{secrets.LIST_MAILS}}
-                from: ${{secrets.MAIL_USERNAME}}
-                convert_markdown: true
-                html_body: file://README.md
-
-
-    deploy:
+    sendmail:
+        name: send mail
         if: ${{ always() }}
         runs-on: ubuntu-latest
-        permissions:
-          contents: write
-        concurrency:
-          group: ${{ github.workflow }}-${{ github.ref }}
-        needs: generate-report
         steps:
-            - name: Deploy report page
-              if: always()
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                 github_token: ${{ secrets.GITHUB_TOKEN }}
-                 PUBLISH_BRANCH: example2
-                 publish_dir: ./allure-history
-                 user_name: 'github-actions[bot]'
-                 user_email: 'github-actions[bot]@users.noreply.github.com'
-            
+        - name: check the path
+          if: always()
+          run: |
+            git checkout dev
+            git branch
+            pwd
+              
+
+        - name: Send mail
+          if: always()
+          uses: dawidd6/action-send-mail@v3
+          with:
+            server_address: smtp.gmail.com
+            server_port: 465
+            secure: true
+            username: ${{secrets.MAIL_USERNAME}}
+            password: ${{secrets.MAIL_PASSWORD}}
+            subject: Report Message
+            to: ${{secrets.LIST_MAILS}}
+            from: ${{secrets.MAIL_USERNAME}}
+            convert_markdown: true
+            html_body: file://README.md
