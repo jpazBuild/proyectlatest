@@ -35,8 +35,8 @@ jobs:
               if: always()
               continue-on-error: true
               with:
-                  ref: allure
-                  path: allure
+                  ref: gh-pages
+                  path: gh-pages
 
             - name: Generate Allure Report
               uses: simple-elf/allure-report-action@master
@@ -44,7 +44,8 @@ jobs:
               with:
                   allure_results: allure-results
                   allure_history: allure-history
-                  gh_pages: allure
+                  keep: 5
+
 
                   
             - name: Deploy report page
@@ -52,7 +53,7 @@ jobs:
               uses: peaceiris/actions-gh-pages@v3
               with:
                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                 PUBLISH_BRANCH: allure
+                 publish_branch: gh-pages
                  publish_dir: allure-history
                  user_name: 'github-actions[bot]'
                  user_email: 'github-actions[bot]@users.noreply.github.com'
