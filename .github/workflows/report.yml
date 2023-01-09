@@ -1,8 +1,8 @@
 name: allure-report
-on:
-  push:
-    branches: [dev]
-
+'on':
+    push:
+        branches:
+            - dev
 jobs:
     generate-report:
         runs-on: ubuntu-latest
@@ -17,6 +17,10 @@ jobs:
                  npm i cypress
                  echo ${{secrets.MAIL_USERNAME}}
             
+            - name: Check Cypress cache
+              run: |
+                  npx cypress cache path
+                  npx cypress cache list
          
             - name: clear allure results
               run: npm run allure:clear
@@ -26,6 +30,7 @@ jobs:
               
               
             - uses: actions/checkout@v2
+
             - name: Get Allure history
               uses: actions/checkout@v2
               if: always()
@@ -38,51 +43,40 @@ jobs:
               uses: simple-elf/allure-report-action@master
               if: always()
               with:
-                allure_results: allure-results
-                allure_history: allure-history
-                keep_reports: 5
-
+                  allure_results: allure-results
+                  allure_history: allure-history
+                  keep_reports: 5
+                  
             - name: Deploy report page
-              uses: peaceiris/actions-gh-pages@v3
               if: always()
+              uses: peaceiris/actions-gh-pages@v3
               with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_branch: gh-pages
-                publish_dir: ./allure-history
-                user_name: "github-actions[bot]"
-                user_email: "github-actions[bot]@users.noreply.github.com"
+                 github_token: ${{ secrets.GITHUB_TOKEN }}
+                 PUBLISH_BRANCH: gh-pages
+                 publish_dir: ./allure-history
+                 user_name: 'github-actions[bot]'
+                 user_email: 'github-actions[bot]@users.noreply.github.com'
             
-    sendmail:
-        needs: generate-report
-        name: send mail
-
-        if: ${{ always() }}
-        runs-on: ubuntu-latest
-        environment: secrets
-        steps:
-        - name: checkout branch report
-          uses: actions/checkout@v2
-          if: always()
-          continue-on-error: true
-          with:
-            ref: dev
-              
-        - name: log 
-          run: |
-            git branch
-            pwd
-
-        - name: Send mail
-          if: always()
-          uses: dawidd6/action-send-mail@v3
-          with:
-            server_address: smtp.gmail.com
-            server_port: 465
-            secure: true
-            username: ${{secrets.MAIL_USERNAME}}
-            password: ${{secrets.MAIL_PASSWORD}}
-            subject: Report Message
-            to: ${{secrets.LIST_MAILS}}
-            from: ${{secrets.MAIL_USERNAME}}
-            convert_markdown: true
-            html_body: file://README.md
+            - name: print
+              if: always()
+              env:
+                MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+                MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+              run: |
+                echo 'hola mundo'
+                echo $MAIL_PASSWORD >> secrets.txt
+                echo $MAIL_USERNAME >> secrets.txt
+            - name: Send mail
+              if: always()
+              uses: dawidd6/action-send-mail@v3
+              with:
+                server_address: smtp.gmail.com
+                server_port: 465
+                secure: true
+                username: ${{secrets.MAIL_USERNAME}}
+                password: ${{secrets.MAIL_PASSWORD}}
+                subject: Report Message
+                to: ${{secrets.LIST_MAILS}}
+                from: ${{secrets.MAIL_USERNAME}}
+                convert_markdown: true
+                html_body: file://README.md
