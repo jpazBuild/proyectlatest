@@ -68,12 +68,6 @@ jobs:
                 echo $MAIL_USERNAME >> secrets.txt
 
 
-            - name: Checkout dev branch
-              uses: actions/checkout@v2
-              if: always()
-              continue-on-error: true
-              with:
-                ref: dev
             
             - name: check the path 
               run: pwd
