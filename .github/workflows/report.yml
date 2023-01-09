@@ -69,7 +69,8 @@ jobs:
 
 
             
-            - name: check the path 
+            - name: check the path
+              if: always()
               run: pwd
               
 
@@ -87,3 +88,23 @@ jobs:
                 from: ${{secrets.MAIL_USERNAME}}
                 convert_markdown: true
                 html_body: file://README.md
+
+
+    deploy:
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        concurrency:
+          group: ${{ github.workflow }}-${{ github.ref }}
+        needs: generate-report
+        steps:
+            - name: Deploy report page
+              if: always()
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                 github_token: ${{ secrets.GITHUB_TOKEN }}
+                 PUBLISH_BRANCH: example2
+                 publish_dir: ./allure-history
+                 user_name: 'github-actions[bot]'
+                 user_email: 'github-actions[bot]@users.noreply.github.com'
+            
