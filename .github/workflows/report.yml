@@ -2,8 +2,7 @@ name: allure-report
 on:
   push:
     branches: [dev]
-  schedule:
-    - cron: '*/5 * * * *'
+
 jobs:
     generate-report:
         runs-on: ubuntu-latest
