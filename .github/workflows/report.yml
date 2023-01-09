@@ -53,7 +53,7 @@ jobs:
                 user_email: "github-actions[bot]@users.noreply.github.com"
             
     sendmail:
-        needs: deploy
+        needs: generate-report
         name: send mail
 
         if: ${{ always() }}
