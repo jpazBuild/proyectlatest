@@ -31,7 +31,7 @@ jobs:
               
             - uses: actions/checkout@v2
 
-            - name: Get Allure history
+            - name: checkout branch report
               uses: actions/checkout@v2
               if: always()
               continue-on-error: true
@@ -74,6 +74,10 @@ jobs:
               continue-on-error: true
               with:
                 ref: dev
+            
+            - name: check the path 
+              run: pwd
+              
 
             - name: Send mail
               if: always()
