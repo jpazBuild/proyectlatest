@@ -71,7 +71,9 @@ jobs:
             
             - name: check the path
               if: always()
-              run: pwd
+              run: |
+                git branch
+                pwd
               
 
             - name: Send mail
@@ -91,6 +93,7 @@ jobs:
 
 
     deploy:
+        if: ${{ always() }}
         runs-on: ubuntu-latest
         permissions:
           contents: write
